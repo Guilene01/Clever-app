@@ -31,6 +31,7 @@ jobs:
 
   typecheck:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +46,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [test, typecheck]
+    needs: typecheck
     steps:
       - uses: actions/checkout@v4
 
