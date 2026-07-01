@@ -12,7 +12,10 @@ FROM python:3.12-slim AS app
 WORKDIR /app
 
 # Non-root user for the container process
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+RUN addgroup --system appgroup \
+    && adduser --system --ingroup appgroup --home /home/appuser appuser \
+    && mkdir -p /home/appuser \
+    && chown appuser:appgroup /home/appuser
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
