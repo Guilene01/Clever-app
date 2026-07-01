@@ -1,0 +1,17 @@
+<form
+  class="note-card"
+  {% if note %}
+    hx-post="{% url 'note_edit' note.pk %}"
+    hx-target="#note-{{ note.pk }}"
+    hx-swap="outerHTML"
+    id="note-{{ note.pk }}"
+  {% else %}
+    hx-post="{% url 'note_create' %}"
+    hx-target="#new-note-slot"
+    hx-swap="innerHTML"
+  {% endif %}
+  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <p><input name="title" placeholder="Title" value="{{ note.title|default:'' }}" data-autofocus></p>
+  <p><textarea name="body" placeholder="Write something...">{{ note.body|default:'' }}</textarea></p>
+  <button type="submit">Save</button>
+</form>

@@ -1,0 +1,9 @@
+django>=4.2
+gunicorn
+psycopg2-binary
+requests>=2.32.0
+python-dotenv
+dj-database-url>=2.1
+whitenoise>=6.0
+pytest
+pytest-django

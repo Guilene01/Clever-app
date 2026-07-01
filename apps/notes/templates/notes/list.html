@@ -1,0 +1,23 @@
+{% extends "notes/base.html" %}
+{% block title %}Your notes &middot; Notesy{% endblock %}
+{% block content %}
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+    <h2>Your notes</h2>
+    <button
+      hx-get="{% url 'note_create' %}"
+      hx-target="#new-note-slot"
+      hx-swap="innerHTML">
+      + New note
+    </button>
+  </div>
+
+  <div id="new-note-slot"></div>
+
+  <div id="note-list">
+    {% for note in notes %}
+      {% include "notes/_note_card.html" with note=note %}
+    {% empty %}
+      <p style="color:#888">No notes yet. Click "New note" to make one.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

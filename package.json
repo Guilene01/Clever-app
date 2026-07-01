@@ -1,0 +1,14 @@
+{
+  "name": "notesy-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "esbuild apps/notes/static_src/*.ts --bundle --outdir=static/js --watch --sourcemap",
+    "build": "esbuild apps/notes/static_src/*.ts --bundle --outdir=static/js --minify",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0",
+    "typescript": "^5.4.0"
+  }
+}

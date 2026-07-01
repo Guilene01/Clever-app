@@ -1,0 +1,26 @@
+{% load static %}
+<div class="note-card" id="note-{{ note.pk }}">
+  <h3>{{ note.title }}</h3>
+  <div class="meta">Updated {{ note.updated_at|date:"Y-m-d H:i" }}</div>
+  <p>{{ note.body|linebreaksbr }}</p>
+  {% if note.summary %}
+    <div class="summary"><strong>Summary:</strong> {{ note.summary }}</div>
+  {% endif %}
+  <div class="actions">
+    <button
+      hx-get="{% url 'note_edit' note.pk %}"
+      hx-target="#note-{{ note.pk }}"
+      hx-swap="outerHTML">Edit</button>
+    <button
+      hx-post="{% url 'note_summarize' note.pk %}"
+      hx-target="#note-{{ note.pk }}"
+      hx-swap="outerHTML"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>Summarize</button>
+    <button
+      hx-delete="{% url 'note_delete' note.pk %}"
+      hx-target="#note-{{ note.pk }}"
+      hx-swap="outerHTML"
+      hx-confirm="Delete this note?"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>Delete</button>
+  </div>
+</div>

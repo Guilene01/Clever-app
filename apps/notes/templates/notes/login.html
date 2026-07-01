@@ -1,0 +1,13 @@
+{% extends "notes/base.html" %}
+{% block title %}Log in &middot; Notesy{% endblock %}
+{% block content %}
+  <h2>Log in</h2>
+  <form method="post">
+    {% csrf_token %}
+    <p><label>Username <input name="username" autofocus></label></p>
+    <p><label>Password <input type="password" name="password"></label></p>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <button type="submit">Log in</button>
+  </form>
+  <p style="margin-top:2rem;color:#888">Try <code>demo</code> / <code>demo</code>.</p>
+{% endblock %}
